@@ -18,6 +18,7 @@ const predictionRoutes = require('./routes/predictions');
 const uploadRoutes = require('./routes/upload');
 const reportRoutes = require('./routes/reports');
 const retailRoutes = require('./routes/retail');
+const seedRoutes = require('./routes/seed');
 
 const { startCronJobs } = require('./utils/cronJobs');
 const { setSocketIO } = require('./utils/socket');
@@ -99,6 +100,7 @@ app.use('/api/predictions', predictionRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/retail', retailRoutes);
+app.use('/api/seed', seedRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
