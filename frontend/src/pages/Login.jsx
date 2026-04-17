@@ -86,14 +86,7 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Demo credentials */}
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-            <p className="text-xs font-semibold text-blue-700 dark:text-blue-400 mb-2">Demo Credentials</p>
-            <div className="space-y-1 text-xs text-blue-600 dark:text-blue-300">
-              <p>Admin: <span className="font-mono">admin@inventory.com</span> / <span className="font-mono">admin123</span></p>
-              <p>Staff: <span className="font-mono">staff@inventory.com</span> / <span className="font-mono">staff123</span></p>
-            </div>
-          </div>
+        
         </div>
 
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
