@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
-// CORS — allow both local dev and production frontend
+// CORS — allow both local dev and all Vercel deployments
 const allowedOrigins = [
   process.env.CLIENT_URL,
   'http://localhost:5173',
@@ -65,9 +65,12 @@ app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, curl, Render health checks)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.some((o) => origin.startsWith(o))) {
-      return callback(null, true);
-    }
+    // Allow exact matches
+    if (allowedOrigins.some((o) => origin === o)) return callback(null, true);
+    // Allow ALL Vercel preview/production deployments for this project
+    if (origin.match(/^https:\/\/smart-inventory.*\.vercel\.app$/)) return callback(null, true);
+    // Allow localhost on any port
+    if (origin.match(/^http:\/\/localhost:\d+$/)) return callback(null, true);
     callback(new Error(`CORS blocked: ${origin}`));
   },
   credentials: true,
